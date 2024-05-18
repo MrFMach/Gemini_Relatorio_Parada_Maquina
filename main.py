@@ -92,7 +92,7 @@ def criar_arquivo_html_conteudo(conteudo_html, caminho_arquivo):
 
 def main():
 
-    caminho_banco_dados = 'caminho_do_meu_banco_de_dados'
+    caminho_banco_dados = 'caminho_do_banco_de_dados'
     caminho_arquivo_html = 'caminho_do_arquivo_html'
 
     # Conexão com o banco de dados
