@@ -1,68 +1,76 @@
-# Relatório de Paradas de Máquinas com Gemini
+# Sistema de Geração de Relatório com Gemini e MQTT
 
-Este projeto consiste em uma aplicação Python que gera relatórios concisos e detalhados sobre as paradas de máquinas industriais, utilizando a tecnologia de inteligência artificial fornecida pelo Gemini. O relatório é gerado a partir dos registros de uma tabela em um banco de dados SQLite.
+Este projeto é um sistema que gera relatórios de paradas de máquinas a partir de um banco de dados SQLite, utilizando a biblioteca Gemini para a geração do conteúdo do relatório e MQTT para a comunicação de comando e status.
 
-## Funcionalidades
+## Índice
 
-- Conexão com um banco de dados SQLite para obter dados de paradas de máquinas.
-- Integração com o Node-RED para registro de paradas de máquinas através de uma interface de dashboard.
-- Utilização do Gemini para gerar um relatório detalhado com base nos dados fornecidos.
-- Comunicação via MQTT para disparar a geração do relatório e obter o status do processo.
+- [Descrição](#descrição)
+- [Requisitos](#requisitos)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
+- [Execução](#execução)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Funcionamento](#funcionamento)
+- [Contato](#contato)
+
+## Descrição
+
+Este sistema monitora um tópico MQTT para receber comandos de geração de relatório. Quando um comando é recebido, o sistema extrai os dados de paradas de máquinas de um banco de dados SQLite, formata os dados, gera um relatório detalhado usando o modelo generativo Gemini, e publica o relatório em formato HTML.
 
 ## Requisitos
 
 - Python 3.x
-- Bibliotecas Python: `sqlite3`, `datetime`, `paho-mqtt`, `google-generativeai`
-- Ambiente Node-RED configurado e em execução
+- Bibliotecas Python:
+  - `sqlite3`
+  - `google-generativeai`
+  - `paho-mqtt`
+- Servidor MQTT configurado e em execução
+- Banco de dados SQLite com os dados de paradas de máquinas
 
 ## Instalação
 
-1. Clone este repositório para o seu ambiente local:
-
+1. Clone este repositório:
     ```bash
-    git clone https://github.com/seuusuario/seuprojeto.git
+    git clone https://github.com/seu-usuario/sistema-geracao-relatorio.git
     ```
 
-2. Instale as dependências Python:
-
+2. Navegue até o diretório do projeto:
     ```bash
-    pip install -r requirements.txt
+    cd sistema-geracao-relatorio
     ```
 
-3. Configure as variáveis de ambiente necessárias para os dados sensíveis, como as informações de conexão MQTT e o caminho para o banco de dados SQLite. Por exemplo:
-
+3. Crie um ambiente virtual (opcional, mas recomendado):
     ```bash
-    export MQTT_BROKER_ADDRESS="localhost"
-    export MQTT_BROKER_PORT="1883"
-    export MQTT_TOPIC_COMMAND="comando"
-    export MQTT_TOPIC_STATUS="status"
-    export DATABASE_PATH="/caminho/para/seu/banco/db_producao.db"
-    export REPORT_PATH="/caminho/para/seu/relatorio/relatorio.html"
+    python -m venv venv
+    source venv/bin/activate   # No Windows: venv\Scripts\activate
     ```
 
-4. Importe o fluxo Node-RED fornecido (`node-red-flow.json`) para o seu ambiente Node-RED.
-
-## Uso
-
-1. Inicie a execução do Node-RED e importe o fluxo fornecido.
-
-2. Utilize a interface de dashboard do Node-RED para registrar paradas de máquinas.
-
-3. Execute o script Python `main.py`:
-
+4. Instale as dependências:
     ```bash
-    python main.py
+    pip install google-generativeai paho-mqtt
     ```
 
-4. Aguarde o processo de geração do relatório.
+## Configuração
 
-5. O relatório será gerado e salvo no caminho especificado.
+1. Configure a chave de API do Gemini:
+    ```python
+    genai.configure(api_key='sua_api_key')
+    ```
 
-## Trechos de Código Importantes
+2. Defina o caminho para o banco de dados SQLite e o arquivo HTML de saída no código:
+    ```python
+    caminho_banco_dados = 'caminho_do_banco_de_dados'
+    caminho_arquivo_html = 'caminho_do_arquivo_html'
+    ```
 
-### Conexão com o Banco de Dados SQLite
+3. Configure o endereço e a porta do broker MQTT:
+    ```python
+    broker_address = "localhost"
+    broker_port = 1883
+    ```
 
-```python
-def conectar_banco_dados(caminho):
-    """Estabelece conexão com o banco de dados SQLite."""
-    return sqlite3.connect(caminho)
+## Execução
+
+Para iniciar o sistema, execute o script principal:
+```bash
+python seu_script.py
