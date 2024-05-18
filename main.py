@@ -92,8 +92,8 @@ def criar_arquivo_html_conteudo(conteudo_html, caminho_arquivo):
 
 def main():
 
-    caminho_banco_dados = 'C:/Users/f107051/OneDrive - WICKBOLD/_Node-RED/di-L1/1887-ai/minha pasta/banco/db_producao.db'
-    caminho_arquivo_html = 'C:/Users/f107051/OneDrive - WICKBOLD/_Node-RED/di-L1/1887-ai/minha pasta/relatorio/relatorio.html'
+    caminho_banco_dados = 'caminho_do_meu_banco_de_dados'
+    caminho_arquivo_html = 'caminho_do_meu_arquivo_html'
 
     # Conexão com o banco de dados
     conn = conectar_banco_dados(caminho_banco_dados)
@@ -117,7 +117,7 @@ def main():
     publicar_status("Concluído!")
 
 # --- Configuração do Gemini ---
-genai.configure(api_key='AIzaSyDJzzgKSfv_FDSgUs0Ec8czfXHhnjtJVgU')
+genai.configure(api_key='minha_api_key')
 model = genai.GenerativeModel('gemini-1.0-pro-latest')
 
 # --- Configuração do cliente MQTT ---
