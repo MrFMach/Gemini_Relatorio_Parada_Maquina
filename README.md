@@ -2,11 +2,14 @@
 
 Este projeto é um sistema que gera relatórios de paradas de máquinas a partir de um banco de dados SQLite, utilizando a biblioteca Gemini para a geração do conteúdo do relatório e MQTT para a comunicação de comando e status.
 
+![Capa](images/capa.png)
+
 ## Índice
 
 - [Descrição](#descrição)
 - [Requisitos](#requisitos)
 - [Instalação](#instalação)
+- [API-Key](#api-key)
 - [Configuração](#configuração)
 - [Execução](#execução)
 - [Funcionamento](#funcionamento)
@@ -48,6 +51,49 @@ Este sistema monitora um tópico MQTT para receber comandos de geração de rela
     ```bash
     pip install google-generativeai paho-mqtt
     ```
+
+## API-Key
+
+Para utilizar este projeto, você precisará de uma API Key do Google Gemini. Siga os passos abaixo para gerar a sua chave:
+
+1. **Acesse o Google Cloud Console:** Acesse o console do Google Cloud através do link: [https://console.cloud.google.com/](https://console.cloud.google.com/)
+
+2. **Crie um projeto (se ainda não tiver um):** Clique em "Select a project" e siga as instruções para criar um novo projeto.
+
+3. **Habilite a API Gemini:**
+   - No menu de navegação (três linhas horizontais no canto superior esquerdo), selecione "APIs & Services" -> "Library".
+   - Busque por "Gemini API" e selecione o resultado da pesquisa.
+   - Clique no botão "Enable" para habilitar a API no seu projeto.
+
+4. **Crie uma credencial de API:**
+   - No menu de navegação, selecione "APIs & Services" -> "Credentials".
+   - Clique em "Create Credentials" e escolha "API key".
+   - Uma nova API Key será gerada e exibida na tela. **Copie a chave para um local seguro!**
+
+5. **Configure a API Key no código:**
+   - Abra o arquivo `relatorio.py`.
+   - Na linha `genai.configure(api_key='SUA_API_KEY')`, substitua `SUA_API_KEY` pela sua API Key gerada no passo anterior.
+
+**Pronto!** Agora você pode executar o script Python e utilizar o Google Gemini para gerar relatórios de paradas de máquinas. 
+
+---
+
+**Documentação do Google Gemini:**
+
+Para mais informações sobre a API do Google Gemini, consulte a documentação oficial: [https://developers.generativeai.google/](https://developers.generativeai.google/)
+
+**Custos:**
+
+O uso da API do Google Gemini pode gerar custos. Consulte a página de preços para obter informações detalhadas sobre os custos: [https://cloud.google.com/ai-platform/pricing](https://cloud.google.com/ai-platform/pricing)
+
+**Limites de uso:**
+
+A API Key do Google Gemini pode ter limites de uso. Consulte a documentação para obter informações sobre os limites e como aumentá-los, se necessário.
+
+**Segurança:**
+
+Mantenha sua API Key segura e nunca a compartilhe publicamente. Armazene-a em um local seguro e utilize variáveis de ambiente no seu código para evitar expô-la no código-fonte. 
+
 
 ## Configuração
 
@@ -130,10 +176,10 @@ python seu_script.py
     ```
     - **Importância:** Em resumo, esse trecho de código define o "contrato" entre o seu script Python e o Google Gemini, especificando o que o Gemini deve fazer (analisar dados e gerar relatório) e como o relatório deve ser estruturado e formatado.
       1. Definição do Prompt:
-        - A variável prompt contém a instrução que será enviada para o Google Gemini.
-        - O prompt define a "persona" do Gemini ("especialista em manutenção"), descreve a tarefa a ser realizada ("analisar dados de parada e gerar relatório") e fornece as informações necessárias para a análise (dados_paradas).
+      - A variável prompt contém a instrução que será enviada para o Google Gemini.
+      - O prompt define a "persona" do Gemini ("especialista em manutenção"), descreve a tarefa a ser realizada ("analisar dados de parada e gerar relatório") e fornece as informações necessárias para a análise (dados_paradas).
       2. Importância da clareza e precisão no prompt:
-        - Um prompt bem definido é crucial para que o Gemini gere um relatório útil e informativo.
-        - Clareza e precisão nas instruções ajudam o Gemini a entender a tarefa e a produzir resultados relevantes.
-        - A formatação detalhada garante que o relatório seja apresentado de forma adequada.
+      - Um prompt bem definido é crucial para que o Gemini gere um relatório útil e informativo.
+      - Clareza e precisão nas instruções ajudam o Gemini a entender a tarefa e a produzir resultados relevantes.
+      - A formatação detalhada garante que o relatório seja apresentado de forma adequada.
       Ao dedicar tempo e atenção na elaboração do prompt, você garante que o Gemini gere relatórios de alta qualidade que atendam às suas necessidades.
