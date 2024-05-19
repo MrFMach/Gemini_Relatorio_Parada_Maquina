@@ -19,6 +19,8 @@ Este projeto é um sistema que gera relatórios de paradas de máquinas a partir
 
 Este sistema monitora um tópico MQTT para receber comandos de geração de relatório. Quando um comando é recebido, o sistema extrai os dados de paradas de máquinas de um banco de dados SQLite, formata os dados, gera um relatório detalhado usando o modelo generativo Gemini, e publica o relatório em formato HTML.
 
+![arquitetura](https://github.com/MrFMach/Gemini_Relatorio_Parada_Maquina/blob/master/images/arquitetura.png)
+
 ## Requisitos
 
 - Python 3.x
