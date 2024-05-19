@@ -2,7 +2,7 @@
 
 Este projeto é um sistema que gera relatórios de paradas de máquinas a partir de um banco de dados SQLite, utilizando a biblioteca Gemini para a geração do conteúdo do relatório e MQTT para a comunicação de comando e status.
 
-![Capa](images/capa.png)
+![capa](images/capa.png)
 
 ## Índice
 
