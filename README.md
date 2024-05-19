@@ -10,6 +10,7 @@ Este projeto é um sistema que gera relatórios de paradas de máquinas a partir
 - [Configuração](#configuração)
 - [Execução](#execução)
 - [Funcionamento](#funcionamento)
+- [Pontos importantes do código](#pontos importantes do código)
 
 ## Descrição
 
@@ -89,3 +90,43 @@ python seu_script.py
 
 4. Publicação do Status:
  - Publica uma mensagem de status indicando que o relatório foi concluído.
+
+## Pontos Importantes do Código
+
+1. Função para obter os últimos registros de paradas de máquinas:
+    ```python
+    def obter_ultimas_paradas(cursor):
+        """Obtém os últimos registros de paradas de máquinas."""
+        cursor.execute("SELECT * FROM tab_relat_maquina ORDER BY PARADA DESC LIMIT 15")
+        return cursor.fetchall()
+    ```
+    - **Importância:** Esta função é crucial porque é responsável por recuperar os dados mais recentes das paradas de máquinas do banco de dados. Esses dados são a base para a geração do relatório. A eficiência e a precisão desta função garantem que o relatório seja atualizado e reflita a situação atual das máquinas, permitindo análises precisas e decisões informadas.
+
+2. Função para gerar o relatório de paradas de máquinas:
+    ```python
+    def gerar_relatorio_paradas(dados_paradas):
+        """Gera um relatório sobre as paradas de máquinas."""
+        data_hora_atual = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+        prompt = f"""
+        Você é um especialista em manutenção de máquinas industriais. 
+        Analise os seguintes dados de paradas e gere um relatório conciso e detalhado:
+
+        {chr(10).join(dados_paradas)}
+
+        Seu relatório deve incluir (nessa ordem):
+        - Tabela com as principais causas de parada, quantidade e porcentagem, em ordem descescente.
+        - Exposição de valores atípicos, usando minutos e horas.
+        - Quaisquer padrões ou tendências observadas.
+        - Sugestões para reduzir o tempo de parada das máquinas.
+        - Rodapé com:
+            - Data e hora: {data_hora_atual}
+            - Autor: Fabio Machado - Gemini
+        
+        Formato do relatório:
+        - formato HTML, para exibição no navegador.
+        - fontes Arial.
+        - codificação UTF-8.
+        """
+    ```
+    - **Importância:** Esta função é essencial porque utiliza a tecnologia Gemini para transformar dados brutos em um relatório detalhado e bem estruturado. O uso de um modelo generativo permite a criação de relatórios que não só apresentam os dados, mas também oferecem análises e sugestões práticas. Isso é fundamental para identificar causas recorrentes de paradas, tendências e possíveis melhorias, facilitando a tomada de decisões estratégicas para a manutenção e operação das máquinas.
+
