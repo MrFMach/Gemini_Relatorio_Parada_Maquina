@@ -72,27 +72,20 @@ Este sistema monitora um tópico MQTT para receber comandos de geração de rela
 Para iniciar o sistema, execute o script principal:
 ```bash
 python seu_script.py
-
+```
 
 ## Funcionamento
-Conexão ao Broker MQTT:
 
-O cliente MQTT conecta-se ao broker especificado e se inscreve no tópico de comando.
-Recebimento de Comando:
+1. Conexão ao Broker MQTT:
+ - O cliente MQTT conecta-se ao broker especificado e se inscreve no tópico de comando.
 
-Quando uma mensagem com o comando "gerar" é recebida no tópico de comando, a função main() é chamada.
-Geração do Relatório:
+2. Recebimento de Comando:
+ - Quando uma mensagem com o comando "gerar" é recebida no tópico de comando, a função main() é chamada.
 
-Conecta ao banco de dados SQLite e obtém os dados de paradas de máquinas.
-Formata os dados e gera um relatório detalhado usando o modelo Gemini.
-Cria um arquivo HTML com o conteúdo do relatório.
-Publicação do Status:
+3. Geração do Relatório:
+ - Conecta ao banco de dados SQLite e obtém os dados de paradas de máquinas.
+ - Formata os dados e gera um relatório detalhado usando o modelo Gemini.
+ - Cria um arquivo HTML com o conteúdo do relatório.
 
-Publica uma mensagem de status indicando que o relatório foi concluído.
-Contato
-Para mais informações, entre em contato com:
-
-Nome: Fabio Machado
-Email: fabio.machado@example.com
-GitHub: seu-usuario
-
+4. Publicação do Status:
+ - Publica uma mensagem de status indicando que o relatório foi concluído.
