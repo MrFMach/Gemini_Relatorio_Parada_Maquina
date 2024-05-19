@@ -10,7 +10,7 @@ Este projeto é um sistema que gera relatórios de paradas de máquinas a partir
 - [Configuração](#configuração)
 - [Execução](#execução)
 - [Funcionamento](#funcionamento)
-- [Pontos importantes do código](#pontos)
+- [Prompt](#prompt)
 
 ## Descrição
 
@@ -91,9 +91,9 @@ python seu_script.py
 4. Publicação do Status:
  - Publica uma mensagem de status indicando que o relatório foi concluído.
 
-## Pontos Importantes do Código
+## Prompt
 
-1. Função para obter os últimos registros de paradas de máquinas:
+1. Função para obter os últimos registros de paradas de máquinas, que fará parte do prompt:
     ```python
     def obter_ultimas_paradas(cursor):
         """Obtém os últimos registros de paradas de máquinas."""
@@ -128,13 +128,12 @@ python seu_script.py
         - codificação UTF-8.
         """
     ```
-    - **Importância:** Esta função é essencial porque utiliza a tecnologia Gemini para transformar dados brutos em um relatório detalhado e bem estruturado.
+    - **Importância:** Em resumo, esse trecho de código define o "contrato" entre o seu script Python e o Google Gemini, especificando o que o Gemini deve fazer (analisar dados e gerar relatório) e como o relatório deve ser estruturado e formatado.
       1. Definição do Prompt:
-       - A variável prompt contém a instrução que será enviada para o Google Gemini.
-       - O prompt define a "persona" do Gemini ("especialista em manutenção"), descreve a tarefa a ser realizada ("analisar dados de parada e gerar relatório") e fornece as informações necessárias para a análise (dados_paradas).
+        - A variável prompt contém a instrução que será enviada para o Google Gemini.
+        - O prompt define a "persona" do Gemini ("especialista em manutenção"), descreve a tarefa a ser realizada ("analisar dados de parada e gerar relatório") e fornece as informações necessárias para a análise (dados_paradas).
       2. Importância da clareza e precisão no prompt:
-       - Um prompt bem definido é crucial para que o Gemini gere um relatório útil e informativo.
-       - Clareza e precisão nas instruções ajudam o Gemini a entender a tarefa e a produzir resultados relevantes.
-       - A formatação detalhada garante que o relatório seja apresentado de forma adequada.
-      Em resumo, esse trecho de código define o "contrato" entre o seu script Python e o Google Gemini, especificando o que o Gemini deve fazer (analisar dados e gerar relatório) e como o relatório deve ser estruturado e formatado.
+        - Um prompt bem definido é crucial para que o Gemini gere um relatório útil e informativo.
+        - Clareza e precisão nas instruções ajudam o Gemini a entender a tarefa e a produzir resultados relevantes.
+        - A formatação detalhada garante que o relatório seja apresentado de forma adequada.
       Ao dedicar tempo e atenção na elaboração do prompt, você garante que o Gemini gere relatórios de alta qualidade que atendam às suas necessidades.
